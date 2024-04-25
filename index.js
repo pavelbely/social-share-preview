@@ -6,6 +6,8 @@ const port = 3000;
 app.set('view engine', 'pug');
 app.use(express.static('public'));
 
+app.get("/", (req, res) => res.send('Hello'));
+
 app.get('/shared/:itemId', (req, res) => {
   const { skipRedirect } = req.query;
   const title = 'Item title';
@@ -35,3 +37,5 @@ app.get('/shared/:itemId', (req, res) => {
 app.listen(port, () => {
   console.log(`App listening on port ${port}`)
 });
+
+module.exports = app;
