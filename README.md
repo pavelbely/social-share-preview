@@ -13,6 +13,6 @@ Project to demonstate shared link preview and required meta tags to make it work
 `npm run tunnel`
 
 ## Demo
-[Share this link to Social to see demo](https://social-share-preview.vercel.app)
+[Share this link to Social to see demo](https://social-share-preview.vercel.app/share/test)
 
 [Check out my blog post on the matter](https://medium.com/@pavelbely/shared-link-preview-how-to-make-it-work-eb953d15d3fd)
