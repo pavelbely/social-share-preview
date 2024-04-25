@@ -9,7 +9,6 @@
     "tunnel": "npx localtunnel -p 3000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "type": "module",
 
   "author": "Pavel Bely",
   "license": "ISC",
