@@ -1,5 +1,7 @@
 # Social share preview
 
+Project to demonstate shared link preview and required meta tags to make it work.
+
 ![Example of shared link preview](public/demo.png "Example of shared link preview")
 
 ## Run
