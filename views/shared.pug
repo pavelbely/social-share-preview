@@ -1,0 +1,79 @@
+doctype html
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1")
+		meta(name="robots" content="noindex")
+		link(rel="icon" href="/favicon.ico")
+
+		title=`${title}`
+		meta(property="description" content=description)
+
+		meta(property="og:title" content=`${title}`)
+		meta(property="og:description" content=description)
+		meta(property="og:type" content="website")
+		meta(property="og:url" content!=sharePageUrl)
+		meta(property="og:site_name" content="Your site name")
+		meta(property="og:image" content!=imageUrl)
+		meta(property="og:image:width" content="1280")
+		meta(property="og:image:height" content="720")
+		meta(property="og:video:url" content!=videoPlayerUrl)
+		meta(property="og:video:type" content="text/html")
+		meta(property="og:video:width" content="1280")
+		meta(property="og:video:height" content="720")
+
+		meta(name="twitter:card" content=twitterCard)
+		meta(name="twitter:site" content="@YoutTwitterHandle")
+		meta(name="twitter:title" content=`${title}`)
+		meta(name="twitter:description" content=description)
+		meta(name="twitter:image" content!=imageUrl)
+		meta(name="twitter:player" content!=videoPlayerUrl)
+		meta(name="twitter:player:width" content="1280")
+		meta(name="twitter:player:height" content="720")
+		meta(name="twitter:player:stream" content!=videoUrl)
+		meta(name="twitter:player:stream:content_type" content="video/mp4")
+
+		style(type="text/css").
+			body {
+				margin: 10px;
+				display: flex;
+				background-color: black;
+			}
+
+			.container {
+				position: relative;
+				width: 100%
+			}
+
+			video {
+				width: 100%;
+			}
+
+			.title {
+				display: block;
+				position: absolute;
+				font-size: 20px;
+				top: 0;
+				left: 0;
+				margin: 10px;
+				cursor: pointer;
+				z-index: 1;
+			}
+
+	body.
+	if skipRedirect
+		<div class="container">
+			a(class="title" href!=redirectUrl target="_blank" rel="noopener noreferrer") #{title}
+			<video autoplay muted loop controls>
+				source(src!=videoUrl type="video/mp4")
+				Your browser does not support the video tag.
+			</video>
+		</div>
+
+if !skipRedirect
+	script.
+		function redirect() {
+			var redirectUrl = `!{itemRedirectUrl}`;
+			setTimeout(() => window.location.replace(redirectUrl));
+		}
+		window.onload = redirect;

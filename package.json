@@ -1,0 +1,20 @@
+{
+  "name": "social-share-preview",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  
+  "scripts": {
+    "start": "node index.js",
+    "tunnel": "npx localtunnel -p 3000",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+
+  "author": "Pavel Bely",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "pug": "^3.0.2"
+  }
+}
