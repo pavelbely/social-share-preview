@@ -23,9 +23,14 @@ app.get('/share/:itemId', (req, res) => {
   const sharePageUrl = `https://${req.hostname}${req.path}`;
   const videoUrl = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
   const videoPlayerUrl = `https://${req.hostname}${req.path}?skipRedirect=true`;
+
+  const isSlackBot = req.headers['user-agent'].match(/^Slackbot/);
+  // Slack relies on twitter card but it can't render video, so we'll fallback to an image
+  const twitterCard = isSlackBot ? 'summary_large_image' : 'player';
   
   const userAgent = req.headers['user-agent'];
   // Send analytic event from here with params itemId and userAgent
+  // To measure to which platforms and what content your users share
 
   res.render('share', {
     title,
@@ -34,6 +39,7 @@ app.get('/share/:itemId', (req, res) => {
     itemRedirectUrl,
     sharePageUrl,
     skipRedirect,
+    twitterCard,
     videoUrl,
     videoPlayerUrl,
   });
