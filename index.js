@@ -10,20 +10,24 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => res.send('Hello'));
 
-app.get('/shared/:itemId', (req, res) => {
-  const { skipRedirect } = req.query;
-  const title = 'Item title';
-  const description = 'Item description';
-  const imageUrl = `https://${req.hostname}/animatedGif.gif`;
+app.get('/share/:itemId', (req, res) => {
+  const { skipRedirect, itemId } = req.query;
+  const title = 'Your title';
+  const description = 'Your description';
+
+  // Slack supports animated gifs
+  // Facebook, Twitter, Whatsapp use first frame of it
+  const imageUrl = `https://${req.hostname}/animated.gif`;
+
   const itemRedirectUrl = 'https://google.com';
   const sharePageUrl = `https://${req.hostname}${req.path}`;
   const videoUrl = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
   const videoPlayerUrl = `https://${req.hostname}${req.path}?skipRedirect=true`;
-  const isSlackBot = req.headers['user-agent'].match(/^Slackbot/);
-  // Slack has issues rendering video in message preview, so we'll render an image
-  const twitterCard = isSlackBot ? 'summary_large_image' : 'player';
+  
+  const userAgent = req.headers['user-agent'];
+  // Send analytic event from here with params itemId and userAgent
 
-  res.render('shared', {
+  res.render('share', {
     title,
     description,
     imageUrl,
