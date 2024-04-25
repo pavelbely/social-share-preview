@@ -33,7 +33,6 @@ app.get('/share/:itemId', (req, res) => {
     imageUrl,
     itemRedirectUrl,
     sharePageUrl,
-    twitterCard,
     skipRedirect,
     videoUrl,
     videoPlayerUrl,
